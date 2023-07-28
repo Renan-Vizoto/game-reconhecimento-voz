@@ -10,17 +10,25 @@ recognition.start();
 recognition.addEventListener('result', onSpeak);
 
 function onSpeak(e) {
-    chute = e.results[0][0].transcript
+    chute = e.results[0][0].transcript;
+
+    if (chute === "Sem.") {
+        chute = "100."
+    };
+
+    if (chute === "Um.") {
+        chute = "1."
+    };
+
     exibeChuteNaTela(chute);
     verificaValorValido(chute);
-}
+};
 
 function exibeChuteNaTela(chute) {
     elementoChute.innerHTML = `
         <div>Você disse </div>
         <span class="box">${chute}</span>
     `
-}
-
+};
 
 recognition.addEventListener('end', () => recognition.start());
